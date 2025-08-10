@@ -42,6 +42,21 @@ _This section will be continuously updated as I move forward._
 - Verified that `kubectx` properly lists both contexts and allows seamless switching using `kubectx <context-name>`, improving my daily workflow.
 
 
+### Week 1 (2025-08-10)
+- 📚 Started preparing for the **AWS Certified Solutions Architect – Associate (SAA-C03)** exam.
+- 🎯 Based on personal and online recommendations, began **Stephane Maarek's** Udemy course.
+- ⏳ Progress so far: ~35% of the course completed.
+- 🧠 Topics covered in depth:
+  - **IAM**: Roles, Policies, Groups and Users
+  - **EC2**: Instances, cost-saving strategies, Load Balancers, Auto Scaling Groups, storage types, networking and much more
+  - **Databases**: RDS, Aurora, and ElastiCache
+  - **Route 53**: DNS services and configurations
+
+**Notes & Challenges:**
+- Created my own AWS account and followed all hands-on exercises in a real environment.
+- Learned that **Security Groups** can be tricky — experimented with rules to understand behavior.
+- Needed to revisit the database section multiple times to get a better understanding of **Aurora** and **ElastiCache** concepts.
+- Reached the first **Solution Architect use cases** in the training — really enjoyed these, as Stephane provides excellent examples.
 
 ---
 
