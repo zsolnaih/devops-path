@@ -58,6 +58,19 @@ _This section will be continuously updated as I move forward._
 - Needed to revisit the database section multiple times to get a better understanding of **Aurora** and **ElastiCache** concepts.
 - Reached the first **Solution Architect use cases** in the training — really enjoyed these, as Stephane provides excellent examples.
 
+
+### Week 2 (2025-08-19)
+- 📚 Continued preparing for the **AWS Certified Solutions Architect – Associate (SAA-C03)** exam.
+- 🧠 Topics studied in detail:
+  - **Amazon S3**: storage classes, durability, lifecycle policies
+  - **CloudFront** and **AWS Global Accelerator**
+  - Additional storage services: **Snow Family**, **Amazon FSx**, **Storage Gateway**, **DataSync**
+  - Queueing & messaging services: **SQS**, **Kinesis**, **AmazonMQ**, **SNS**
+
+**Notes & Challenges:**
+- 🌴 This week included a **family vacation**, so I had less time to study compared to the previous week.  
+- 🚀 Looking forward to diving deeper and resuming a more intensive study pace next week. 
+
 ---
 
 ## 🔗 Connect
