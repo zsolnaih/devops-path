@@ -71,6 +71,22 @@ _This section will be continuously updated as I move forward._
 - 🌴 This week included a **family vacation**, so I had less time to study compared to the previous week.  
 - 🚀 Looking forward to diving deeper and resuming a more intensive study pace next week. 
 
+
+### Week 3 (2025-08-25)
+- 📚 Continued preparing for the **AWS Certified Solutions Architect – Associate (SAA-C03)** exam.
+- 🧠 Topics studied in detail:
+  - **Containerization**: ECS, EKS, Fargate
+  - **Databases**: DynamoDB, DocumentDB, Neptune, Keyspaces, Timestream
+  - **Data Analytics**: Athena, Redshift, OpenSearch, QuickSight
+  - **Machine Learning Services**: Rekognition, Transcribe, Polly, Translate, Lex, SageMaker, Kendra
+  - **Monitoring & Audit**: CloudWatch, CloudTrail, AWS Config
+
+**Notes & Challenges:**
+- ✉️ I wanted to experiment with sending an email notification triggered by a **CloudTrail event**.  
+- 🔗 Without EventBridge, this was straightforward by connecting CloudTrail directly to an SNS topic.  
+- ⚡ With EventBridge in the middle, I had to define custom rules and tweak them several times before it worked.  
+- ✅ Eventually, I managed to build a small **test project** where EventBridge captures a CloudTrail event and routes it through SNS to my email — a great hands-on exercise that deepened my understanding of event-driven architectures.  
+
 ---
 
 ## 🔗 Connect
