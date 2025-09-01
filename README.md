@@ -87,6 +87,20 @@ _This section will be continuously updated as I move forward._
 - ⚡ With EventBridge in the middle, I had to define custom rules and tweak them several times before it worked.  
 - ✅ Eventually, I managed to build a small **test project** where EventBridge captures a CloudTrail event and routes it through SNS to my email — a great hands-on exercise that deepened my understanding of event-driven architectures.  
 
+
+### Week 4 (2025-09-01)
+- 📚 Completed the **AWS SAA Udemy training by Stephane Maarek** 🎉
+- 🧠 Topics covered this week:
+  - **Identity & Access Management**: deeper dive into AWS IAM
+  - **Security & Encryption**: KMS, SSM Parameter Store, Shield, WAF
+  - **Networking**: VPC in more detail
+  - **Disaster Recovery & Migration**: DMS, AWS Backup
+  - **Other useful services**: CloudFormation, SES, PinPoint, SSM, Cost Center, Outposts, AWS Batch, AppFlow, Amplify
+
+**Notes & Challenges:**
+- 📖 Explored the **AWS Well-Architected Framework**, which gave me a structured way of thinking about best practices.  
+- 🔄 Next week marks the beginning of the **exam preparation phase** — I plan to rewatch some parts of the training that didn’t fully stick, and start practicing with **test exams** to assess my readiness.  
+
 ---
 
 ## 🔗 Connect
