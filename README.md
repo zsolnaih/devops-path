@@ -102,7 +102,7 @@ _This section will be continuously updated as I move forward._
 - 🔄 Next week marks the beginning of the **exam preparation phase** — I plan to rewatch some parts of the training that didn’t fully stick, and start practicing with **test exams** to assess my readiness.  
 
 
-### Week 5 (2025-09-0*)
+### Week 5 (2025-09-07)
 - 📝 Focused entirely on **practice exams** this week.
 - 📊 My first attempt scored **60%**, which I was fairly satisfied with as a starting point.
 - ✅ Completed a total of **3 practice exams** so far — the latest one was already a **passing score on the first try**, showing clear progress.
