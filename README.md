@@ -109,6 +109,13 @@ _This section will be continuously updated as I move forward._
 - 🔄 I will continue practicing with more test exams over the next couple of weeks to strengthen weaker areas.
 - 🎯 If the trend continues, I feel confident that I’ll be ready to book the **real certification exam** soon.
 
+
+### Week 6 (2025-09-17)
+- 📝 Took **two new practice exams** this week — both were **passed on the first attempt** 🎉
+- 🔁 Revisited some of the earlier practice exams as well, consistently scoring **above 90%**
+- 📊 These results give me strong confidence in my preparation
+- 🎯 I believe that within the next **1–2 weeks** I’ll be ready to attempt the **real certification exam**
+
 ---
 
 ## 🔗 Connect
