@@ -10,7 +10,7 @@ I'm currently working on building solid DevOps engineering skills with the goal 
 - Gain practical knowledge in DevOps tools, cloud infrastructure, and automation practices
 - Build a strong personal DevOps portfolio through real-world projects and documentation
 - Prepare for and achieve the following certifications:
-  - [ ] **AWS Certified Solutions Architect – Associate (SAA-C03)**
+  - [x] **AWS Certified Solutions Architect – Associate (SAA-C03)**
   - [ ] **HashiCorp Certified: Terraform Associate**
   - [ ] **Certified Kubernetes Administrator (CKA)**
 
@@ -115,6 +115,20 @@ _This section will be continuously updated as I move forward._
 - 🔁 Revisited some of the earlier practice exams as well, consistently scoring **above 90%**
 - 📊 These results give me strong confidence in my preparation
 - 🎯 I believe that within the next **1–2 weeks** I’ll be ready to attempt the **real certification exam**
+
+
+### Week 7 (2025-09-25)
+- 📚 This week was intense — so intense that I’m a bit late with this update!
+- 📝 Spent the beginning of the week actively preparing for the **AWS SAA exam**.
+- 🖥️ On Sunday evening, I scheduled the exam, and the following two days were dedicated fully to revision.
+- 🎉 Yesterday I took the exam and I’m very happy to announce that I **passed the AWS Certified Solutions Architect – Associate (SAA-C03)**! 🚀
+- 🎯 Next target: **HashiCorp Terraform Associate certification**.
+
+**Notes & Challenges:**
+- ❓ Going into the exam, I wasn’t sure exactly what to expect.  
+- 🔄 Completed all of **Stephane Maarek’s practice exams** multiple times, which proved to be very useful.  
+- 💡 For additional practice, I purchased a **SkillCertPro AWS SAA bundle** (~1200 questions). I tried 1–2 exams, but found the question quality poor and often unclear, so I decided not to continue with them.  
+- ✅ The real exam questions were very similar in style and clarity to **Stephane’s practice questions**, confirming their value. I can confidently recommend his course to anyone preparing for the SAA exam.
 
 ---
 
