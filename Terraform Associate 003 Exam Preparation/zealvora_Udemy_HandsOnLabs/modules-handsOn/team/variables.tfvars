@@ -1,0 +1,1 @@
+regions = ["ap-south-1", "us-east-1"]
