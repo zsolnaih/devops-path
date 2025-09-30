@@ -37,10 +37,10 @@ variable "regions" {
 
 }
 
-module "sg_multi" {
+module "sg" {
   for_each = var.regions == null ? {} : { for r in var.regions : r => r }
 
-  source  = "./modules/sg"
+  source  = "../modules/sg"
   sg_name = "example-${each.key}"
 
   providers = {
