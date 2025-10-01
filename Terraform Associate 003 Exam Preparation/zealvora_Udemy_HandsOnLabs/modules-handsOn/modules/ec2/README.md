@@ -1,0 +1,1 @@
+EC2 creation module for practice module structure and creation

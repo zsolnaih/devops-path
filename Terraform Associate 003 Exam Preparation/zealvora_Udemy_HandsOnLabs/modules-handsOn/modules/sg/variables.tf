@@ -3,8 +3,3 @@ variable "sg_name" {
     default = "test-sg"
   
 }
-
-variable "regions" {
-    type = set(string)
-    default = null
-}
