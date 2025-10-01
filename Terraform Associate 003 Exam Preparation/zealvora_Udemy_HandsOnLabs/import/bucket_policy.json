@@ -1,0 +1,32 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::0284741:user/henrik"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::henrik-terraform-backend",
+                "arn:aws:s3:::henrik-terraform-backend/*"
+            ]
+        },
+        {
+            "Sid": "Statement2",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::henrik-terraform-backend",
+                "arn:aws:s3:::henrik-terraform-backend/*"
+            ],
+            "Condition": {
+                "ArnNotEquals": {
+                    "aws:PrincipalArn": "arn:aws:iam::0284741:user/henrik"
+                }
+            }
+        }
+    ]
+}
