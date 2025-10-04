@@ -130,6 +130,22 @@ _This section will be continuously updated as I move forward._
 - 💡 For additional practice, I purchased a **SkillCertPro AWS SAA bundle** (~1200 questions). I tried 1–2 exams, but found the question quality poor and often unclear, so I decided not to continue with them.  
 - ✅ The real exam questions were very similar in style and clarity to **Stephane’s practice questions**, confirming their value. I can confidently recommend his course to anyone preparing for the SAA exam.
 
+
+### Week 8-9 (2025-10-04)
+- ⏸️ Took a short rest day after passing the AWS SAA exam, then continued on my planned path.  
+- 📚 Started and completed a **Terraform Associate Udemy training** this week.  
+- 💡 The course was very useful — I feel I now understand Terraform concepts and workflows much more clearly.  
+- 🛠️ Next steps: begin solving **practice exams** and actively prepare for the certification.  
+- 📂 I also want to start writing **Terraform practice code** and share it here in this repository.  
+- 📄 The code I wrote during the training is also included in this repo, but those were mainly small, isolated examples focused on testing individual Terraform features.  
+
+**Notes & Challenges:**
+- 🤔 I initially started with the **Bryan Krausen & Gabe Maentz** Udemy course, but since it’s a bit outdated, many of the labs didn’t work with newer Terraform or provider versions, requiring troubleshooting.  
+- 🔄 I switched to **Zeal Vora’s training**, whose labs were up-to-date and worked smoothly without issues.  
+- 🎧 It took a short time to get used to his Indian accent, but it wasn’t a problem overall.  
+- ⏩ Since he explained even the very basics in great detail, I watched most of the videos at **1.25x speed**, skipping some chapters I already knew.  
+- 💡 What I especially appreciated: he frequently shared **real-world industry examples and best practices**, which added significant value.  
+
 ---
 
 ## 🔗 Connect
