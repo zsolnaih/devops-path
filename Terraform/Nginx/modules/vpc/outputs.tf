@@ -9,11 +9,3 @@ output "public_subnets_ids" {
 output "private_subnets_ids" {
     value =  aws_subnet.private[*].id
 }
-
-# output "private_rt" {
-#     value = aws_route_table.private
-# }
-
-# output "public_rt" {
-#     value = aws_route_table.public  
-# }

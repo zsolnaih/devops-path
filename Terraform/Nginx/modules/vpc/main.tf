@@ -1,3 +1,6 @@
+#################################################################
+# Datas and locals
+#################################################################
 data "aws_availability_zones" "available" {
   filter {
     name   = "opt-in-status"
@@ -7,10 +10,12 @@ data "aws_availability_zones" "available" {
 
 locals {
     sorted_az_ids = sort(data.aws_availability_zones.available.zone_ids)
-    nat_gw_count = var.nat_gw_needed ? (var.single_nat ? 1 : length(var.private_subnets)) : 0
+    nat_gw_count = var.single_nat ? 1 : length(var.private_subnets)
 }
 
-
+#################################################################
+# VPC and Subnets
+#################################################################
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   tags = {
@@ -46,6 +51,9 @@ resource "aws_subnet" "public" {
   }
 }
 
+#################################################################
+# igw and NAT GW
+#################################################################
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
@@ -61,7 +69,6 @@ resource "aws_eip" "eip" {
     domain   = "vpc"
 
     tags = {
-        Name = "${var.project_name}-eip-${count.index + 1}"
         Terraform = "by zsolnaih"
         Project = var.project_name
     }
@@ -77,12 +84,14 @@ resource "aws_nat_gateway" "nat_gw" {
         Terraform = "by zsolnaih"
         Project = var.project_name
     }
-
     # To ensure proper ordering, it is recommended to add an explicit dependency
     # on the Internet Gateway for the VPC.
     depends_on = [aws_internet_gateway.igw]
 }
 
+#################################################################
+# Route tables
+#################################################################
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
 
@@ -111,7 +120,7 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table_association" "private" {
-  count = local.nat_gw_count == 0 ? 0 : length(var.private_subnets)
+  count = length(var.private_subnets)
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = var.single_nat ? aws_route_table.private[0].id : aws_route_table.private[count.index].id
 }

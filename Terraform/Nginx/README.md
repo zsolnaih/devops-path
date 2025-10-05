@@ -57,15 +57,13 @@ terraform-aws-nginx-lab/
 └─ README.md
 ```
 
-You can also keep everything flat in a single root if you prefer while learning.
-
 ---
 
 ## 4) Variables (common)
 
 | Name                 | Type         | Default                           | Description                        |
 | -------------------- | ------------ | --------------------------------- | ---------------------------------- |
-| `project_name`       | string       | `nginx-lab`                       | Name prefix for tags and resources |
+| `project_name`       | string       |                                   | Name prefix for tags and resources |
 | `region`             | string       | `eu-central-1`                    | AWS region                         |
 | `vpc_cidr`           | string       | `10.0.0.0/16`                     | VPC CIDR block                     |
 | `public_subnets`     | list(string) | `["10.0.1.0/24","10.0.2.0/24"]`   | Public subnet CIDRs                |
@@ -73,9 +71,10 @@ You can also keep everything flat in a single root if you prefer while learning.
 | `instance_type`      | string       | `t3.micro`                        | EC2 type for ASG                   |
 | `desired_capacity`   | number       | `2`                               | ASG desired capacity               |
 | `min_size`           | number       | `2`                               | ASG min size                       |
-| `max_size`           | number       | `4`                               | ASG max size                       |
+| `max_size`           | number       | `3`                               | ASG max size                       |
 | `allowed_http_cidrs` | list(string) | `["0.0.0.0/0"]`                   | Who can reach ALB HTTP             |
-| `single_nat        ` | bool         | `true`                            | Single NAT or per-AZ NAT GWs       |
+| `single_nat`         | bool         | `true`                            | Single NAT or per-AZ NAT GWs       |
+| `ssm_managed`        | bool         | `false`                           | SSM role attached on EC2 servers   |
 
 Example `terraform.tfvars`:
 
@@ -91,6 +90,7 @@ min_size           = 2
 max_size           = 3
 allowed_http_cidrs = ["0.0.0.0/0"]
 single_nat         = true
+ssm_managed        = false
 ```
 
 ---
@@ -100,43 +100,32 @@ single_nat         = true
 `envs/default/main.tf` (minimal end‑to‑end):
 
 ```hcl
-terraform {
-  required_version = ">= 1.6"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 6.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
-
 module "vpc" {
-  source          = "../..//modules/vpc"
-  project_name    = var.project_name
-  vpc_cidr        = var.vpc_cidr
-  public_subnets  = var.public_subnets
-  private_subnets = var.private_subnets
+    source = "../..//modules/vpc"
+    vpc_cidr = var.vpc_cidr
+    project_name = var.project_name
+    private_subnets = var.private_subnets
+    public_subnets = var.public_subnets
+    single_nat = var.single_nat  
 }
 
 module "web" {
-  source             = "../..//modules/web"
-  project_name       = var.project_name
-  vpc_id             = module.vpc.vpc_id
-  public_subnet_ids  = module.vpc.public_subnet_ids
-  private_subnet_ids = module.vpc.private_subnet_ids
-  instance_type      = var.instance_type
-  desired_capacity   = var.desired_capacity
-  min_size           = var.min_size
-  max_size           = var.max_size
-  allowed_http_cidrs = var.allowed_http_cidrs
+    source = "../../modules/web"
+    private_subnets = module.vpc.private_subnets_ids
+    public_subnets = module.vpc.public_subnets_ids
+    project_name = var.project_name
+    vpc_id = module.vpc.vpc_id
+    desired_capacity = var.desired_capacity
+    min_size = var.min_size
+    max_size = var.max_size
+    instance_type = var.instance_type
+    ssm_managed = var.ssm_managed
+
+    depends_on = [ module.vpc ]  #NAT GW is needed to run user-data script
 }
 
-output "alb_dns_name" {
-  value = module.web.alb_dns_name
+output "alb" {
+    value = "http://${module.web.alb_dns}"
 }
 ```
 
@@ -152,8 +141,9 @@ terraform {
     }
   }
 
+  #Optional for s3 remote backend
   backend "s3" {
-        bucket = "s3-bucket"
+        bucket = "s3-bucket-name"
         key = "nginx/tfstate/default/terraform.tfstate" 
         region = "eu-central-1"
         use_lockfile = true
@@ -183,6 +173,7 @@ variable "min_size"           { type = number  default = 2 }
 variable "max_size"           { type = number  default = 3 }
 variable "allowed_http_cidrs" { type = list(string) default = ["0.0.0.0/0"] }
 variable "single_nat"         { type = bool default = true }
+variable "ssm_managed"        { type = bool default = false }
 ```
 
 ---
@@ -200,14 +191,16 @@ variable "project_name"    { type = string }
 variable "vpc_cidr"        { type = string }
 variable "public_subnets"  { type = list(string) }
 variable "private_subnets" { type = list(string) }
+variable "private_subnets" { type = list(string) }
+variable "single_nat"      { type = bool }
 ```
 
 Outputs:
 
 ```hcl
 output "vpc_id"             { value = aws_vpc.this.id }
-output "public_subnet_ids"  { value = aws_subnet.public[*].id }
-output "private_subnet_ids" { value = aws_subnet.private[*].id }
+output "public_subnets_ids"  { value = aws_subnet.public[*].id }
+output "private_subnets_ids" { value = aws_subnet.private[*].id }
 ```
 
 ### `modules/web`
@@ -218,21 +211,17 @@ Key pieces:
 
 ```hcl
 # Security groups
-# - alb_sg: allow 80 from allowed_http_cidrs, egress 0.0.0.0/0
+# - alb_sg: allow 80 from allowed_http_cidrs, egress to asg_sg
 # - asg_sg: allow 80 from alb_sg, egress 0.0.0.0/0
 
 # Launch template user_data (cloud-init)
 user_data = base64encode(<<-EOF
 #!/bin/bash
-set -euo pipefail
-apt-get update -y
-apt-get install -y nginx
-cat >/var/www/html/index.html <<HTML
-<h1>It works! – ${var.project_name}</h1>
-<p>Host: $(hostname -f)</p>
-HTML
-systemctl enable nginx
-systemctl restart nginx
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 EOF
 )
 ```
@@ -240,7 +229,7 @@ EOF
 Outputs:
 
 ```hcl
-output "alb_dns_name" { value = aws_lb.this.dns_name }
+output "alb_dns_name" { value = "http://${aws_lb.this.dns_name}" }
 ```
 
 ---
@@ -263,7 +252,7 @@ terraform destroy
 ## 8) Verifying
 
 * After `apply`, Terraform will output `alb_dns_name`.
-* Open it in a browser: `http://<alb_dns_name>` → You should see the **It works! – nginx-lab** page.
+* Open it in a browser: `http://<alb_dns_name>` → You should see the **Hello World from the instances** page.
 * ALB target health should turn **healthy** after EC2s finish user‑data.
 
 ---

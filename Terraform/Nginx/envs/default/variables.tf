@@ -1,6 +1,5 @@
 variable "project_name" {
   type    = string
-  default = "nginx-lab"
 }
 variable "region" {
   type    = string
@@ -42,7 +41,7 @@ variable "single_nat" {
   type    = bool
   default = true
 }
-variable "nat_gw_needed" {
+variable "ssm_managed" {
   type    = bool
-  default = true
+  default = false
 }

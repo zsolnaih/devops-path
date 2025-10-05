@@ -1,8 +1,3 @@
-# output "vpc" {
-#     value = module.vpc
-# }
-
 output "alb" {
-    value = module.web.alb_dns
-  
+    value = "http://${module.web.alb_dns}"
 }
