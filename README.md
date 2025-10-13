@@ -11,7 +11,7 @@ I'm currently working on building solid DevOps engineering skills with the goal 
 - Build a strong personal DevOps portfolio through real-world projects and documentation
 - Prepare for and achieve the following certifications:
   - [x] **AWS Certified Solutions Architect – Associate (SAA-C03)**
-  - [ ] **HashiCorp Certified: Terraform Associate**
+  - [x] **HashiCorp Certified: Terraform Associate**
   - [ ] **Certified Kubernetes Administrator (CKA)**
 
 ## 📚 What's Included
@@ -145,6 +145,21 @@ _This section will be continuously updated as I move forward._
 - 🎧 It took a short time to get used to his Indian accent, but it wasn’t a problem overall.  
 - ⏩ Since he explained even the very basics in great detail, I watched most of the videos at **1.25x speed**, skipping some chapters I already knew.  
 - 💡 What I especially appreciated: he frequently shared **real-world industry examples and best practices**, which added significant value.  
+
+
+### Week 9 (2025-10-13)
+- 🧠 Continued active preparation for the **HashiCorp Certified: Terraform Associate** exam through practice tests and hands-on exercises.  
+- 🧾 Registered for the online exam, which I took yesterday — and I’m happy to share that I **successfully passed** and earned my **Terraform Associate certification**! 🎉  
+- 🏗️ Applied my Terraform knowledge in a **real-world project** this week:  
+  - We operate a **SonarQube** application on AWS using a basic EC2 + RDS setup that was previously managed manually.  
+  - This week, I imported both the **test** and **production** environments into Terraform, so from now on, they will be fully managed as **Infrastructure as Code (IaC)**.  
+- ⚙️ Additionally, we have another AWS-hosted **GitLab** deployment (EKS + RDS + EC2 runners + EC2 Gitaly) that’s already managed by Terraform — except for the **CloudWatch alarms**.  
+  - My next goal is to bring those alarm configurations under Terraform management as well.  
+- 🎯 With Terraform completed, I’m now moving on to the **Certified Kubernetes Administrator (CKA)** exam preparation. I’ve already enrolled in a **Udemy course** to get started.
+
+**Notes & Challenges:**
+- 🔍 Compared to AWS and Terraform, I found **fewer structured courses and practice exams** available for the CKA exam.  
+- 💪 I expect this to be the **most challenging certification** in my current journey, but I’m confident I can prepare effectively and try my best.  
 
 ---
 
