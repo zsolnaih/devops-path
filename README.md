@@ -161,6 +161,19 @@ _This section will be continuously updated as I move forward._
 - 🔍 Compared to AWS and Terraform, I found **fewer structured courses and practice exams** available for the CKA exam.  
 - 💪 I expect this to be the **most challenging certification** in my current journey, but I’m confident I can prepare effectively and try my best.  
 
+
+### Week 10–11 (2025-10-27)
+- 🎓 Began the **Certified Kubernetes Administrator (CKA)** Udemy training and have already completed roughly **50%** of the course.  
+- 🔍 Found only **a few CKA preparation trainings** on Udemy — significantly fewer than for AWS or Terraform.  
+- 🧠 The current course does a great job explaining **Kubernetes fundamentals**, and the **KodeKloud sandbox environment** provides an excellent environment to practice the basics hands-on.  
+- ⚙️ However, for more complex Kubernetes topics — such as **TLS certificate management** or **cluster upgrades** — the explanations were not entirely clear, and I had to research these areas using additional sources.  
+- 🤔 I’m a bit concerned about the **CKA exam**, as it’s **highly practical**, and while the course gives good exposure to core concepts, it doesn’t fully cover the real-world complexity of certain topics.  
+- 📘 Nevertheless, I plan to complete the entire course since it provides a solid overall understanding of how Kubernetes works. I’ll likely supplement it with more advanced labs and documentation before attempting the certification.  
+
+**Notes & Challenges:**
+- 🧩 The main challenge remains balancing **theory and hands-on practice** — especially for the more intricate parts of Kubernetes.  
+- 💡 Despite these challenges, I feel I’m gaining a much clearer mental model of Kubernetes internals and cluster operations, which will help later in both the exam and real-world use cases.  
+
 ---
 
 ## 🔗 Connect
