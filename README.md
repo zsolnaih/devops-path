@@ -3,7 +3,8 @@
 
 Welcome to my **DevOps learning journey**!
 
-I'm currently working on building solid DevOps engineering skills with the goal of transitioning into a DevOps-focused role within the next 6–12 months. This repository documents my learning path, progress, notes, and hands-on experiments along the way.
+I’m passionate about understanding how modern DevOps practices and tools shape reliable, automated infrastructure.
+This repository documents my learning journey as I explore and build real, hands-on experience with these technologies.
 
 ## 🎯 Goals
 
@@ -173,6 +174,24 @@ _This section will be continuously updated as I move forward._
 **Notes & Challenges:**
 - 🧩 The main challenge remains balancing **theory and hands-on practice** — especially for the more intricate parts of Kubernetes.  
 - 💡 Despite these challenges, I feel I’m gaining a much clearer mental model of Kubernetes internals and cluster operations, which will help later in both the exam and real-world use cases.  
+
+
+### Week 12–13 (2025-11-09)
+- 🕒 The last two weeks have been quite busy, so I had limited time to continue my learning path.  
+- 🔄 Fortunately, things should return to normal starting tomorrow, and I’m planning to get back to active study again.  
+- 📚 Despite the limited time, I still made some gradual progress and continued exploring **Kubernetes concepts**.  
+- 🔐 Learned about **Kubernetes Security**, including:
+  - Authentication and Authorization within the cluster  
+  - **RBAC** (Role-Based Access Control)  
+  - **TLS certificates** and their management  
+  - **User and Service Account** management  
+- 💾 Also studied **Kubernetes Storage Management** — understanding how persistent volumes, storage classes, and dynamic provisioning work.  
+- 🌐 Currently learning about **Kubernetes Networking**, which will be my main focus over the next few days.  
+
+**Notes & Challenges:**
+- 🧩 Balancing time for study has been the biggest challenge recently, but even small progress keeps the momentum going.  
+- 💪 Feeling motivated to return to a more consistent rhythm starting next week and continue working toward the **CKA certification**.  
+
 
 ---
 
