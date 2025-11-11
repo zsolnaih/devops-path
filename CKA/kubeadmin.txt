@@ -21,7 +21,7 @@ sysctl net.ipv4.ip_forward
 
 # init the cluster
 kubeadm init --apiserver-advertise-address 192.168.56.164 --apiserver-cert-extra-sans controlplane --pod-network-cidr 172.17.0.0/16 --service-cidr 172.20.0.0/16
-
+kubeadm init --apiserver-advertise-address $(hostname -I) --apiserver-cert-extra-sans controlplane --pod-network-cidr 172.17.0.0/16
 
 # default .kubeconfig
 mkdir -p $HOME/.kube
