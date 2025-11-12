@@ -92,25 +92,6 @@ resource "aws_internet_gateway" "internet_gateway" {
   }
 }
 
-# #Create EIP for NAT Gateway
-# resource "aws_eip" "nat_gateway_eip" {
-#   domain     = "vpc"
-#   depends_on = [aws_internet_gateway.internet_gateway]
-#   tags = {
-#     Name = "demo_igw_eip"
-#   }
-# }
-
-# #Create NAT Gateway
-# resource "aws_nat_gateway" "nat_gateway" {
-#   depends_on    = [aws_subnet.public_subnets]
-#   allocation_id = aws_eip.nat_gateway_eip.id
-#   subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
-#   tags = {
-#     Name = "demo_nat_gateway"
-#   }
-# }
-
 
 #################################################################
 # Security groups
@@ -233,7 +214,7 @@ resource "aws_instance" "cp" {
   instance_type = "t3.small"
   subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
   vpc_security_group_ids = [aws_security_group.cp.id]
-  user_data_base64 = filebase64("./ec2-user-data.sh")
+  user_data_base64 = filebase64("./ec2-user-data-cp.sh")
   iam_instance_profile = aws_iam_instance_profile.test_profile.name
   tags = {
     Name = "k8s ControlPlane"
@@ -243,20 +224,20 @@ resource "aws_instance" "cp" {
   }
 }
 
-# resource "aws_instance" "node" {
-#   ami           = data.aws_ami.linux.id
-#   instance_type = "t3.micro"
-#   subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
-#   # user_data_base64 = filebase64("./ec2-user-data.sh")
-#   vpc_security_group_ids = [aws_security_group.node.id]
-#   iam_instance_profile = aws_iam_instance_profile.test_profile.name
-#   tags = {
-#     Name = "k8s node"
-#   }
-#   lifecycle {
-#     ignore_changes = [ ami ]
-#   }
-# }
+resource "aws_instance" "node" {
+  ami           = data.aws_ami.linux.id
+  instance_type = "t3.micro"
+  subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
+  user_data_base64 = filebase64("./ec2-user-data-node.sh")
+  vpc_security_group_ids = [aws_security_group.node.id]
+  iam_instance_profile = aws_iam_instance_profile.test_profile.name
+  tags = {
+    Name = "k8s node"
+  }
+  lifecycle {
+    ignore_changes = [ ami ]
+  }
+}
 
 
 resource "aws_iam_role" "ssm_k8s_role" {

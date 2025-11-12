@@ -18,5 +18,23 @@ EOF
 # Apply sysctl params without reboot
 sudo sysctl --system
 
+yum install -y containerd
+
+
+cat <<EOF | sudo tee /etc/systemd/system/containerd.service
+[Unit]
+Description=containerd
+Documentation=https://containerd.io
+[Service]
+ExecStart=/usr/bin/containerd
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable containerd
+sudo systemctl start containerd
+
+
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
