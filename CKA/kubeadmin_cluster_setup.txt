@@ -60,4 +60,4 @@ kubectl apply -f kube-flannel.yml
 
 
 #AWS EC2 -> SNAT needed
-kube-proxy daemonset config -> --masquerade-all
+kube-proxy daemonset config -> --masquerade-all=true

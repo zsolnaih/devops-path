@@ -13,23 +13,18 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
-variable "private_subnets" {
-  default = {
-    "private_subnet_1" = 0
-    "private_subnet_2" = 1
-    "private_subnet_3" = 2
-  }
+variable "public_subnets" {
+  type    = list(string)
+  default = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
-variable "public_subnets" {
-  default = {
-    "public_subnet_1" = 0
-    "public_subnet_2" = 1
-    "public_subnet_3" = 2
-  }
+variable "private_subnets" {
+  type    = list(string)
+  default = ["10.0.11.0/24", "10.0.12.0/24"]
 }
 
 variable "node_count" {
+  type = number
   default = 2
   validation {
     condition = var.node_count < 1 ? false : true

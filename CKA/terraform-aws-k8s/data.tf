@@ -1,3 +1,4 @@
+#Retrieve the most recent Amazon Linux ami
 data "aws_ami" "linux" {
   most_recent = true
 
@@ -23,3 +24,13 @@ data "aws_ami" "linux" {
 
   owners = ["amazon"]
 }
+
+
+#Retrieve the list of AZs in the current AWS region
+data "aws_availability_zones" "available" {
+  filter {
+    name   = "opt-in-status"
+    values = ["opt-in-not-required"]
+  }
+}
+data "aws_region" "current" {}
