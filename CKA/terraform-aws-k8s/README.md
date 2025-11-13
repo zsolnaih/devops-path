@@ -89,7 +89,7 @@ The application is available at:
 | worker nodes SG      | 5473         | TCP                               | Calico Typha                      |
 | worker nodes SG      | 7443         | TCP                               | Calico Flow                       |
 
-** 🧩 Worker Nodes Security Group**
+**🧩 Worker Nodes Security Group**
 
 *Egress*
 | To                   | Port         | Protocol                          | Description                       |
