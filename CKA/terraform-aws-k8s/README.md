@@ -84,6 +84,7 @@ http://<node-public-ip>:30007
 | worker nodes SG      | 7443         | TCP                               | Calico Flow                       |
 
 **Worker Nodes Security Group**
+
 *Egress*
 | To                   | Port         | Protocol                          | Description                       |
 | -------------------- | ------------ | --------------------------------- | --------------------------------- |
