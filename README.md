@@ -137,7 +137,7 @@ _This section will be continuously updated as I move forward._
 - 📚 Started and completed a **Terraform Associate Udemy training** this week.  
 - 💡 The course was very useful — I feel I now understand Terraform concepts and workflows much more clearly.  
 - 🛠️ Next steps: begin solving **practice exams** and actively prepare for the certification.  
-- 📂 I also want to start writing **Terraform practice code** and share it here in this repository.  
+- 📂 I also want to start writing **Terraform practice code** and share it here in this repository -> [Basic Nginx](https://example.com](https://github.com/zsolnaih/devops-path/blob/main/Terraform/Nginx/README.md)).  
 - 📄 The code I wrote during the training is also included in this repo, but those were mainly small, isolated examples focused on testing individual Terraform features.  
 
 **Notes & Challenges:**
