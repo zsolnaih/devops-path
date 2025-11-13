@@ -114,15 +114,11 @@ resource "aws_security_group" "node" {
   }
 }
 
+
+# Controlplane rules
+
 resource "aws_vpc_security_group_egress_rule" "cp_egress" {
   security_group_id = aws_security_group.cp.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  ip_protocol = "-1"
-}
-
-resource "aws_vpc_security_group_egress_rule" "node_egress" {
-  security_group_id = aws_security_group.node.id
 
   cidr_ipv4   = "0.0.0.0/0"
   ip_protocol = "-1"
@@ -164,6 +160,17 @@ resource "aws_vpc_security_group_ingress_rule" "cp_kubecontroller" {
   to_port     = 10257
 }
 
+
+resource "aws_vpc_security_group_ingress_rule" "cp_allow_nodeport" {
+  security_group_id = aws_security_group.cp.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 30000
+  ip_protocol = "tcp"
+  to_port     = 32767
+}
+
+
 resource "aws_vpc_security_group_ingress_rule" "cp_http" {
   security_group_id = aws_security_group.cp.id
 
@@ -182,6 +189,50 @@ resource "aws_vpc_security_group_ingress_rule" "cp_https" {
   to_port     = 443
 }
 
+resource "aws_vpc_security_group_ingress_rule" "cp_calico" {
+  security_group_id = aws_security_group.cp.id
+
+  referenced_security_group_id = aws_security_group.node.id
+  from_port   = 179
+  ip_protocol = "tcp"
+  to_port     = 179
+}
+
+resource "aws_vpc_security_group_ingress_rule" "cp_calico_self" {
+  security_group_id = aws_security_group.cp.id
+
+  referenced_security_group_id = aws_security_group.cp.id
+  from_port   = 179
+  ip_protocol = "tcp"
+  to_port     = 179
+}
+
+resource "aws_vpc_security_group_ingress_rule" "cp_calico_typha" {
+  security_group_id = aws_security_group.cp.id
+
+  referenced_security_group_id = aws_security_group.node.id
+  from_port   = 5473
+  ip_protocol = "tcp"
+  to_port     = 5473
+}
+
+resource "aws_vpc_security_group_ingress_rule" "cp_calico_flow" {
+  security_group_id = aws_security_group.cp.id
+
+  referenced_security_group_id = aws_security_group.node.id
+  from_port   = 7443
+  ip_protocol = "tcp"
+  to_port     = 7443
+}
+
+# Node rules
+resource "aws_vpc_security_group_egress_rule" "node_egress" {
+  security_group_id = aws_security_group.node.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  ip_protocol = "-1"
+}
+
 resource "aws_vpc_security_group_ingress_rule" "node_kubeapi" {
   security_group_id = aws_security_group.node.id
 
@@ -191,10 +242,10 @@ resource "aws_vpc_security_group_ingress_rule" "node_kubeapi" {
   to_port     = 10250
 }
 
-resource "aws_vpc_security_group_ingress_rule" "node_nodeport" {
+resource "aws_vpc_security_group_ingress_rule" "node_allow_nodeport" {
   security_group_id = aws_security_group.node.id
 
-  referenced_security_group_id = aws_security_group.cp.id
+  cidr_ipv4   = "0.0.0.0/0"
   from_port   = 30000
   ip_protocol = "tcp"
   to_port     = 32767
@@ -208,6 +259,43 @@ resource "aws_vpc_security_group_ingress_rule" "node_flannel" {
   ip_protocol = "udp"
   to_port     = 8472
 }
+
+resource "aws_vpc_security_group_ingress_rule" "node_calico" {
+  security_group_id = aws_security_group.node.id
+
+  referenced_security_group_id = aws_security_group.cp.id
+  from_port   = 179
+  ip_protocol = "tcp"
+  to_port     = 179
+}
+
+resource "aws_vpc_security_group_ingress_rule" "node_calico_self" {
+  security_group_id = aws_security_group.node.id
+
+  referenced_security_group_id = aws_security_group.node.id
+  from_port   = 179
+  ip_protocol = "tcp"
+  to_port     = 179
+}
+
+resource "aws_vpc_security_group_ingress_rule" "node_calico_typha" {
+  security_group_id = aws_security_group.node.id
+
+  referenced_security_group_id = aws_security_group.cp.id
+  from_port   = 5473
+  ip_protocol = "tcp"
+  to_port     = 5473
+}
+
+resource "aws_vpc_security_group_ingress_rule" "node_calico_flow" {
+  security_group_id = aws_security_group.node.id
+
+  referenced_security_group_id = aws_security_group.cp.id
+  from_port   = 7443
+  ip_protocol = "tcp"
+  to_port     = 7443
+}
+
 
 resource "aws_instance" "cp" {
   ami           = data.aws_ami.linux.id
@@ -225,14 +313,15 @@ resource "aws_instance" "cp" {
 }
 
 resource "aws_instance" "node" {
-  ami           = data.aws_ami.linux.id
-  instance_type = "t3.micro"
-  subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
-  user_data_base64 = filebase64("./ec2-user-data-node.sh")
-  vpc_security_group_ids = [aws_security_group.node.id]
-  iam_instance_profile = aws_iam_instance_profile.test_profile.name
+  count                   = var.node_count
+  ami                     = data.aws_ami.linux.id
+  instance_type           = "t3.micro"
+  subnet_id               = aws_subnet.public_subnets["public_subnet_1"].id
+  user_data_base64        = filebase64("./ec2-user-data-node.sh")
+  vpc_security_group_ids  = [aws_security_group.node.id]
+  iam_instance_profile    = aws_iam_instance_profile.test_profile.name
   tags = {
-    Name = "k8s node"
+    Name = "k8s node-${count.index+1}"
   }
   lifecycle {
     ignore_changes = [ ami ]

@@ -28,3 +28,11 @@ variable "public_subnets" {
     "public_subnet_3" = 2
   }
 }
+
+variable "node_count" {
+  default = 2
+  validation {
+    condition = var.node_count < 1 ? false : true
+    error_message = "node_count value must be minimum 1"
+  }
+}

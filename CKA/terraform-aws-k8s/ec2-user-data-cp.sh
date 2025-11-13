@@ -43,16 +43,16 @@ systemctl enable --now kubelet
 kubeadm init --apiserver-advertise-address $(hostname -I) --apiserver-cert-extra-sans controlplane --pod-network-cidr 172.17.0.0/16
 
 # default .kubeconfig
-mkdir -p /home/ssm-user/.kube
-cp -i /etc/kubernetes/admin.conf /home/ssm-user/.kube/config
-chown ssm-user:ssm-user /home/ssm-user/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.0/manifests/operator-crds.yaml
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.0/manifests/tigera-operator.yaml
 
-curl -O https://raw.githubusercontent.com/projectcalico/calico/v3.31.0/manifests/custom-resources.yaml
-sed -E -i 's/cidr: [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\/[0-9]+/cidr: 172.17.0.0\/16/' custom-resources.yaml
+sudo curl -O https://raw.githubusercontent.com/projectcalico/calico/v3.31.0/manifests/custom-resources.yaml
+sudo sed -E -i 's/cidr: [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\/[0-9]+/cidr: 172.17.0.0\/16/' custom-resources.yaml
 
 kubectl create -f custom-resources.yaml
 

@@ -1,0 +1,102 @@
+############################################
+# Upgrade the control plane
+############################################
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/repodata/repomd.xml.key
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
+EOF
+
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubeadm --disableexcludes=kubernetes
+
+# replace x in 1.34.x-* with the latest patch version
+sudo yum install -y kubeadm-'1.34.x-*' --disableexcludes=kubernetes
+
+#verify the version
+sudo kubeadm version
+
+#verify the upgrade plan
+sudo kubeadm upgrade plan
+
+# replace x with the patch version you picked for this upgrade
+sudo kubeadm upgrade apply v1.34.x
+
+# execute this command on a control plane node
+# replace <node-to-drain> with the name of your node you are draining
+kubectl drain <node-to-drain> --ignore-daemonsets
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubelet --disableexcludes=kubernetes
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubectl --disableexcludes=kubernetes
+
+# replace x in 1.34.x-* with the latest patch version
+sudo yum install -y kubelet-'1.34.x-*' kubectl-'1.34.x-*' --disableexcludes=kubernetes
+
+#Restart the kubelet
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+
+############################################
+# Upgrade the nodes
+############################################
+
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/repodata/repomd.xml.key
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
+EOF
+
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubeadm --disableexcludes=kubernetes
+
+# replace x in 1.34.x-* with the latest patch version
+sudo yum install -y kubeadm-'1.34.x-*' --disableexcludes=kubernetes
+
+#verify the version
+kubeadm version
+
+#upgrade the node
+sudo kubeadm upgrade node
+
+# replace <node-to-drain> with the name of your node you are draining
+kubectl drain <node-to-drain> --ignore-daemonsets
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubelet --disableexcludes=kubernetes
+
+# Find the latest 1.34 version in the list.
+# It should look like 1.34.x-*, where x is the latest patch.
+sudo yum list --showduplicates kubectl --disableexcludes=kubernetes
+
+# replace x in 1.34.x-* with the latest patch version
+sudo yum install -y kubelet-'1.34.x-*' kubectl-'1.34.x-*' --disableexcludes=kubernetes
+
+#Restart the kubelet
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+# execute this command on a control plane node
+# replace <node-to-uncordon> with the name of your node
+kubectl uncordon <node-to-uncordon>
+
