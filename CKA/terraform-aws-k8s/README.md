@@ -63,7 +63,7 @@ This creates:
 - A NodePort Service
 
 The application is available at:
-http:// <node-public-ip> :30007
+`http://<node-public-ip>:30007`
 
 ---
 
