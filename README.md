@@ -193,6 +193,20 @@ _This section will be continuously updated as I move forward._
 - 💪 Feeling motivated to return to a more consistent rhythm starting next week and continue working toward the **CKA certification**.  
 
 
+### Week 14 (2025-11-17)
+- 🧱 This week focused mainly on **cluster installation using kubeadm**, as covered in the CKA training material.  
+- ☁️ To practice this, I created a **Terraform script** that provisions a Kubernetes cluster on **AWS EC2 instances**, allowing me to experiment with real setups -> [Terraform](https://github.com/zsolnaih/devops-path/blob/main/CKA/terraform-aws-k8s/README.md). 
+- 📦 The course also introduced **Helm** and **Kustomize**, providing insight into different approaches to manage and deploy Kubernetes manifests.  
+
+**Notes & Challenges:**
+- 💻 I really enjoyed writing and experimenting with the Terraform script — it helped reinforce both my Terraform and Kubernetes knowledge.  
+  - Learned, for example, which **ports need to be opened for Calico CNI** to function properly.  
+- ⚖️ My **motivation toward the CKA exam** has dipped slightly this week for two reasons:  
+  1. Based on feedback and comments online, the exam appears to be **quite challenging and hands-on**, and as a manager who doesn’t administer Kubernetes daily, I’m a bit unsure how well I’ll perform in a real test scenario.  
+  2. In one of our internal services, we’re planning to implement **configuration management with Ansible**, and although my colleagues don’t currently have time to start it, I’m very curious and tempted to jump into it myself.  
+- 🎯 For now, I’ll **continue with Kubernetes**, and I expect to finish the training next week — only the **troubleshooting section** remains.  
+- 🔍 Once that’s complete, I plan to look deeper into the **CKA exam structure and requirements** to better understand what to expect before scheduling it.  
+
 ---
 
 ## 🔗 Connect
