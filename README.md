@@ -207,6 +207,19 @@ _This section will be continuously updated as I move forward._
 - 🎯 For now, I’ll **continue with Kubernetes**, and I expect to finish the training next week — only the **troubleshooting section** remains.  
 - 🔍 Once that’s complete, I plan to look deeper into the **CKA exam structure and requirements** to better understand what to expect before scheduling it.  
 
+
+
+### Week 15–16 (2025-12-01)
+- 🎓 Finished the **CKA Udemy training** — great milestone!  
+- 🧠 Started working on **practice exams** to test my readiness.  
+- ⏱️ The main challenge so far isn’t the content itself — I’m able to complete nearly all the tasks — but rather **time management**.  
+  - For example, one test had 7 tasks with a 1-hour limit, and I only managed to complete up to task 5 within the allotted time.  
+- 🔄 I’ll continue practicing to improve my efficiency and get used to solving problems faster in a command-line environment.  
+
+**Notes & Challenges:**
+- 🕒 Free time remains limited, making consistent study sessions difficult, but I’m determined to keep going.  
+- 💪 Even small progress each week adds up — and I’m not giving up on preparing for the **CKA certification**.
+
 ---
 
 ## 🔗 Connect
