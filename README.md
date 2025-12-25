@@ -220,6 +220,20 @@ _This section will be continuously updated as I move forward._
 - 🕒 Free time remains limited, making consistent study sessions difficult, but I’m determined to keep going.  
 - 💪 Even small progress each week adds up — and I’m not giving up on preparing for the **CKA certification**.
 
+
+
+### Week 17–20 (2025-12-25)
+- 🕒 Progress has been a bit slower recently — towards the end of the year there were many responsibilities, which significantly reduced my available free time.
+- 🎓 Despite that, I managed to **complete the CKA training** as well as the **mock exams**.
+- 🧠 I’m able to solve the majority of the tasks, but the biggest challenge remains **time pressure** — racing against the clock is currently my main obstacle.
+- 🔧 Over the past few days, I decided to broaden my focus slightly and started refreshing my **Git knowledge**, with the goal of diving deeper into **GitHub Actions** soon.
+- 🎄 During the holidays, I plan to take a short break and recharge. Over the last 2–3 months, most of my free time went into learning, so some rest is well deserved.
+- 🚀 In January, I plan to return with renewed energy and continue both the **CKA exam preparation** and my DevOps learning path.
+
+**Notes & Challenges:**
+- ⏱️ Time management remains the biggest challenge for the CKA exam.
+- 🧘 Taking a conscious break feels important to avoid burnout and stay motivated long term.
+- 
 ---
 
 ## 🔗 Connect
